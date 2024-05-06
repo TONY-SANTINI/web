@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+
+{% block titulo %} resultados {% endblock %}
+
+{% block cabecera %} Resultado de la consulta {% endblock %}
+
+{% block contenido %} 
+<p>Los resultados de su busqueda: </p>
+{% if productos  %} 
+    {% for producto in productos %}
+        <p>Nombre:{{producto.nombre}}</p>
+        <p>Marca:{{producto.marca}}</p>
+    {% endfor %}
+    <img id="res" src="{{producto.imagenes.url}}" alt="">  
+{% else %}
+    <p>Su búsqueda no arroja un resultado</p>   
+{% endif %}
+{% endblock %}

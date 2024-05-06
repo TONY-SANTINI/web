@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block titulo %} Ingresar {% endblock %}
+
+{% block cabecera %} Ingresa al sitio {% endblock %}
+
+{% block contenido %}
+{% if error %}
+<p>{{error}}</p>
+<p>Si no tiene usuario registrese</p>
+{% endif %}
+<form action="" method="POST">{% csrf_token %}
+    {% for campo in formulario %}
+        <p>{{campo.label_tag}}</p>
+        <p>{{campo}}</p>
+        {% for error in campo.errors %}
+            <p>{{error}}</p>
+        {% endfor %}
+    {% endfor %}
+    <p><input type="submit" value="Ingresar"></p>
+</form>
+{% endblock %}

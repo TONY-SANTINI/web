@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block titulo %} Registro {% endblock %}
+
+{% block cabecera %} Crea un usuario {% endblock %}
+
+{% block contenido %} 
+<form method="POST" action="">{% csrf_token %}
+    {% for campo in formulario %}
+        <p>{{campo.label_tag}}</p>
+        <p>{{campo}}</p>
+        {% for error in campo.error %}
+            <p class="error">{{error}}</p>
+        {% endfor %}
+    {% endfor %}
+    <p><input type="submit" value="Registrarse"></p>
+</form>
+{% endblock %}

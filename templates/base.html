@@ -1,0 +1,43 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block titulo %}{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    <link rel="shorcut icon" href="{% static 'img/icon.png' %}">
+</head>
+<body>
+    <header>
+        <h2>{% block cabecera %} {% endblock %}</h2>
+    </header>
+    <nav id="menu">
+        <ul>
+            <li><a href="{% url 'inicio' %}">Inicio</a></li>
+            <li><a href="{% url 'somos' %}">Quienes Somos</a></li>
+            <li><a href="{% url 'contacto' %}">Contacto</a></li>
+            {% if request.user.is_anonymous %}
+            <li><a href="{% url 'registro' %}">Registrarse</a></li>
+            <li><a href="{% url 'ingresar' %}">Ingresar</a></li>
+            {% else %}
+            <li><a href="{% url 'salir' %}">Salir</a></li>
+            {% endif %}
+        </ul>
+        <form id="buscar" method="get" action="/buscar">
+            <input type="text" name="buscar">
+            <input type="submit" value="Buscar">
+        </form>
+    </nav>
+    <section>
+        {% block contenido %}
+
+        {% endblock %}
+    </section>
+    <footer>
+        <p>La tecnología en tus manos</p>
+    </footer>
+    
+</body>
+</html>
